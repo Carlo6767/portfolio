@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>About Me - JC Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Learn more about JC, a Grade 12 student programmer who loves coding, design, and gaming, and is working towards becoming a professional developer.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;transition:all 0.4s ease;}
+html,body{min-height:100vh;scroll-behavior:smooth;}
+body.dark{background:radial-gradient(circle at top,#020617 0,#020617 30%,#020617 60%,#00010a 100%);color:#e5e7eb;overflow-x:hidden;}
+body.light{background:linear-gradient(135deg,#e2e8f0,#f8fafc);color:#020617;overflow-x:hidden;}
+body.theme-transition *{transition-duration:0.6s !important;}
+
+/* ===== NAVBAR ===== */
+.navbar{display:flex;align-items:center;padding:15px 40px;background:rgba(15,23,42,0.85);backdrop-filter:blur(12px);box-shadow:0 6px 20px rgba(0,0,0,0.45);position:sticky;top:0;z-index:999;}
+.navbar h1.logo{font-size:28px;color:#38bdf8;font-weight:bold;}
+.navbar ul{list-style:none;display:flex;gap:25px;margin-left:auto;align-items:center;}
+.navbar a{text-decoration:none;color:inherit;font-weight:600;position:relative;}
+.navbar a::after{content:"";position:absolute;width:0;height:2px;background:currentColor;left:0;bottom:-5px;transition:width 0.3s;}
+.navbar a:hover::after,.navbar a.active::after{width:100%;}
+
+/* ===== FLOATING DECORATIONS ===== */
+.floating-blob{
+  position:fixed;
+  border-radius:999px;
+  filter:blur(40px);
+  opacity:0.2;
+  z-index:0;
+  pointer-events:none;
+  background:radial-gradient(circle at 30% 30%, #38bdf8, transparent 60%);
+  animation:floatBlob 22s ease-in-out infinite alternate;
+}
+.floating-blob.blob-1{
+  width:260px;
+  height:260px;
+  top:12%;
+  left:-80px;
+}
+.floating-blob.blob-2{
+  width:320px;
+  height:320px;
+  bottom:-80px;
+  right:-40px;
+  background:radial-gradient(circle at 70% 30%, #6366f1, transparent 60%);
+  animation-delay:5s;
+}
+@keyframes floatBlob{
+  0%{transform:translate3d(0,0,0) scale(1);}
+  50%{transform:translate3d(40px,-25px,0) scale(1.06);}
+  100%{transform:translate3d(-30px,30px,0) scale(0.96);}
+}
+
+/* ===== PROFILE SECTION ===== */
+.section{max-width:980px;margin:80px auto;padding:40px;border-radius:24px;text-align:center;background:rgba(15,23,42,0.9);box-shadow:0 24px 80px rgba(0,0,0,0.7);position:relative;z-index:1;}
+.profile{display:flex;flex-direction:column;align-items:center;margin-bottom:40px;}
+.profile img{width:150px;height:150px;border-radius:50%;border:4px solid #38bdf8;margin-bottom:20px;transition:transform 0.3s,box-shadow 0.3s;}
+.profile img:hover{transform:scale(1.1) rotate(5deg);box-shadow:0 15px 40px rgba(56,189,248,0.6);}
+.profile h1{font-size:36px;color:#38bdf8;margin-bottom:10px;letter-spacing:0.04em;}
+.profile p{font-size:18px;max-width:650px;line-height:1.7;opacity:0.9;}
+.section h2{margin-bottom:20px;font-size:24px;color:#e5e7eb;letter-spacing:0.08em;text-transform:uppercase;}
+
+/* ===== SKILLS CARDS ===== */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;margin-top:10px;}
+.card{padding:22px;border-radius:20px;background:rgba(15,23,42,0.9);box-shadow:0 10px 25px rgba(0,0,0,0.4);transition:transform 0.3s,box-shadow 0.3s,background 0.3s;}
+.card:hover{transform:translateY(-10px) scale(1.03);box-shadow:0 22px 45px rgba(56,189,248,0.45);background:rgba(37,99,235,0.25);}
+.card h3{margin-bottom:10px;color:#38bdf8;}
+.card p{opacity:0.9;}
+
+/* ===== FOOTER ===== */
+footer{text-align:center;padding:20px;margin-top:50px;opacity:0.7;}
+
+/* ===== FADE IN ===== */
+.section,.card,.profile img{opacity:0;transform:translateY(30px);transition:all 0.7s ease;}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:768px){
+  .navbar{padding:10px 20px;flex-wrap:wrap;row-gap:10px;}
+  .navbar h1.logo{font-size:22px;}
+  .navbar ul{gap:15px;font-size:14px;flex-wrap:wrap;justify-content:flex-end;}
+  .section{margin:50px 16px;padding:28px;}
+  .profile h1{font-size:28px;}
+  .profile p{font-size:16px;}
+}
+</style>
+</head>
+<body class="dark">
+
+<nav class="navbar">
+<h1 class="logo">JC</h1>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a class="active" href="about.html">About</a></li>
+<li><a href="projects.html">Projects</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="hobbies.html">Hobbies</a></li>
+</ul>
+</nav>
+
+<section class="section">
+<div class="profile">
+<img src="image.png" alt="JC Profile">
+<h1>JC</h1>
+<p>Hi! I’m a Grade 12 student programmer. I love coding, creating mini-games, designing UI/UX concepts, and playing online games like Valorant. I am always learning new tools and improving my skills to become a professional developer in the future.</p>
+</div>
+
+<h2>My Skills & Interests</h2>
+<div class="cards">
+<div class="card"><h3>💻 Programming</h3><p>Websites, scripts, and small apps</p></div>
+<div class="card"><h3>🎮 Gaming</h3><p>Valorant & strategy games</p></div>
+<div class="card"><h3>🎨 Design</h3><p>UI/UX, digital art, and animations</p></div>
+<div class="card"><h3>🧠 Learning</h3><p>New languages, frameworks, and problem-solving</p></div>
+</div>
+</section>
+
+<footer>© 2026 JC • Let's build something cool 🚀</footer>
+
+<!-- floating background elements -->
+<div class="floating-blob blob-1"></div>
+<div class="floating-blob blob-2"></div>
+
+<script>
+// SCROLL FADE IN
+const revealItems=document.querySelectorAll(".section,.card,.profile img");
+const reveal=()=>{revealItems.forEach(item=>{const rect=item.getBoundingClientRect();if(rect.top<window.innerHeight-100){item.style.opacity="1";item.style.transform="translateY(0)"}})};
+window.addEventListener("scroll",reveal);
+reveal();
+</script>
+
+</body>
+</html>

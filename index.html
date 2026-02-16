@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Home - JC Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="JC is a Grade 12 student programmer who builds websites, scripts, and mini projects while gaming and learning new tools. Explore projects, hobbies, and skills.">
+<style>
+/* ===== VARIABLES ===== */
+:root{
+  --primary:#38bdf8;
+  --secondary:#6366f1;
+  --bg-dark:#00010a;
+  --bg-dark-alt:#020617;
+  --bg-light:#cbd5e1;
+  --bg-light-alt:#e2e8f0;
+  --text-dark:#020617;
+  --text-light:#e5e7eb;
+  --card-bg-dark:rgba(255,255,255,0.05);
+  --card-bg-light:rgba(0,0,0,0.05);
+}
+
+/* ===== GLOBAL RESET ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+  transition:all 0.4s ease;
+}
+html,body{min-height:100vh;scroll-behavior:smooth;}
+body.dark{background:linear-gradient(135deg,var(--bg-dark),var(--bg-dark-alt));color:var(--text-light);overflow-x:hidden;}
+body.light{background:linear-gradient(135deg,var(--bg-light),var(--bg-light-alt));color:var(--text-dark);overflow-x:hidden;}
+body.theme-transition *{transition-duration:0.6s !important;}
+
+a:focus-visible,
+button:focus-visible{
+  outline:2px solid var(--primary);
+  outline-offset:2px;
+}
+
+/* ===== SKIP LINK ===== */
+.skip-link{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  top:-40px;
+  background:var(--primary);
+  color:#fff;
+  padding:8px 16px;
+  border-radius:20px;
+  z-index:1000;
+  text-decoration:none;
+  font-weight:600;
+}
+.skip-link:focus{
+  top:10px;
+}
+
+/* ===== NAVBAR ===== */
+.navbar{
+  display:flex;
+  align-items:center;
+  padding:15px 40px;
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(12px);
+  box-shadow:0 6px 20px rgba(0,0,0,0.25);
+  position:sticky;
+  top:0;
+  z-index:999;
+}
+.navbar h1.logo{font-size:28px;color:var(--primary);font-weight:bold;}
+.navbar ul{
+  list-style:none;
+  display:flex;
+  gap:25px;
+  margin-left:auto;
+  align-items:center;
+}
+.navbar a{
+  text-decoration:none;
+  color:inherit;
+  font-weight:600;
+  position:relative;
+}
+.navbar a::after{
+  content:"";
+  position:absolute;
+  width:0;
+  height:2px;
+  background:currentColor;
+  left:0;
+  bottom:-5px;
+  transition:width 0.3s;
+}
+.navbar a:hover::after,
+.navbar a.active::after{
+  width:100%;
+}
+
+/* ===== FLOATING DECORATIONS ===== */
+.floating-blob{
+  position:fixed;
+  border-radius:999px;
+  filter:blur(40px);
+  opacity:0.2;
+  z-index:0;
+  pointer-events:none;
+  background:radial-gradient(circle at 30% 30%, var(--primary), transparent 60%);
+  animation:floatBlob 20s ease-in-out infinite alternate;
+}
+.floating-blob.blob-1{
+  width:260px;
+  height:260px;
+  top:8%;
+  left:-80px;
+}
+.floating-blob.blob-2{
+  width:320px;
+  height:320px;
+  bottom:-60px;
+  right:-40px;
+  background:radial-gradient(circle at 70% 30%, var(--secondary), transparent 60%);
+  animation-delay:5s;
+}
+@keyframes floatBlob{
+  0%{transform:translate3d(0,0,0) scale(1);}
+  50%{transform:translate3d(40px,-25px,0) scale(1.06);}
+  100%{transform:translate3d(-30px,30px,0) scale(0.96);}
+}
+
+/* ===== HERO ===== */
+.hero{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:120px 20px;
+  margin:40px;
+  border-radius:20px;
+  background:radial-gradient(circle at top left,rgba(15,23,42,0.95) 0,rgba(2,6,23,0.99) 40%,rgba(15,23,42,1) 100%);
+  animation: gradientMove 8s ease infinite alternate;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 24px 80px rgba(0,0,0,0.7);
+}
+@keyframes gradientMove{
+  0%{background-position:0 0;}
+  100%{background-position:100% 100%;}
+}
+.hero h1{
+  font-size:48px;
+  margin-bottom:20px;
+  color:var(--primary);
+  letter-spacing:0.03em;
+}
+.hero h1 span{
+  border-right:2px solid var(--primary);
+  padding-right:2px;
+  animation:typing 3s steps(20) infinite;
+}
+@keyframes typing{
+  0%,100%{border-color:transparent;}
+  50%{border-color:var(--primary);}
+}
+.hero p{
+  font-size:20px;
+  max-width:700px;
+  line-height:1.6;
+  margin-bottom:40px;
+  opacity:0.9;
+  transform:translateY(8px);
+}
+
+/* ===== HERO CARDS ===== */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:25px;
+  width:100%;
+  max-width:900px;
+  position:relative;
+  z-index:1;
+}
+.card{
+  padding:25px;
+  border-radius:20px;
+  background:var(--card-bg-dark);
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  text-align:center;
+  transition:transform 0.4s,box-shadow 0.4s,background 0.4s;
+  opacity:0;
+  transform:translateY(30px);
+}
+body.light .card{background:var(--card-bg-light);}
+.card:hover{
+  transform:translateY(-10px) scale(1.05) rotate(-2deg);
+  box-shadow:0 20px 40px rgba(56,189,248,0.35);
+  background:rgba(56,189,248,0.1);
+}
+.card h3{
+  margin-bottom:10px;
+  color:var(--primary);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.card svg{width:28px;height:28px;fill:currentColor;}
+
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;
+  padding:20px;
+  margin-top:50px;
+  opacity:0.7;
+}
+
+/* ===== BACK TO TOP ===== */
+#backToTop{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  background:var(--primary);
+  color:white;
+  padding:10px 15px;
+  border-radius:50%;
+  cursor:pointer;
+  display:none;
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* ===== FADE IN ===== */
+.hero,.card{transition:all 0.6s ease;}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:768px){
+  .navbar{
+    padding:10px 20px;
+    flex-wrap:wrap;
+    row-gap:10px;
+  }
+  .navbar h1.logo{font-size:22px;}
+  .navbar ul{
+    gap:15px;
+    font-size:14px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+  .hero{
+    margin:20px 10px;
+    padding:80px 16px;
+  }
+  .hero h1{font-size:32px;}
+  .hero p{font-size:16px;}
+}
+</style>
+</head>
+<body class="dark">
+
+<a href="#mainContent" class="skip-link">Skip to main content</a>
+
+<nav class="navbar" aria-label="Main navigation">
+<h1 class="logo">JC</h1>
+<ul>
+<li><a class="active" href="index.html" aria-current="page">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="projects.html">Projects</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="hobbies.html">Hobbies</a></li>
+</ul>
+</nav>
+
+<main id="mainContent">
+<section class="hero">
+<h1>Hello, I'm <span>JC 👋</span></h1>
+<p>Welcome to my portfolio! I am a Grade 12 student programmer who loves coding and playing online games like Valorant. Explore my projects, hobbies, and skills!</p>
+<div class="cards">
+<div class="card">
+<h3>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/></svg>
+Programming
+</h3>
+<p>Websites, scripts, and mini projects</p>
+</div>
+<div class="card">
+<h3>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l4 20-8 0z"/></svg>
+Gaming
+</h3>
+<p>Valorant & strategy games</p>
+</div>
+<div class="card">
+<h3>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 12l20 0-10-10-10 10z"/></svg>
+Design
+</h3>
+<p>UI/UX concepts & animations</p>
+</div>
+<div class="card">
+<h3>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l9 21H3z"/></svg>
+Learning
+</h3>
+<p>New tools, languages & frameworks</p>
+</div>
+</div>
+</section>
+</main> 
+
+<div id="backToTop" aria-label="Back to top" role="button" tabindex="0">&#8679;</div>
+
+<!-- floating background elements -->
+<div class="floating-blob blob-1"></div>
+<div class="floating-blob blob-2"></div>
+
+<script>
+// SCROLL FADE IN FOR CARDS
+const revealItems = document.querySelectorAll(".hero,.card");
+const reveal = () => {
+  revealItems.forEach(item => {
+    const rect = item.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 100){
+      item.style.opacity = "1";
+      item.style.transform = "translateY(0)";
+    }
+  });
+};
+window.addEventListener("scroll", reveal);
+reveal();
+
+// BACK TO TOP
+const backToTop = document.getElementById("backToTop");
+window.addEventListener("scroll", () => {
+  backToTop.style.display = window.scrollY > 400 ? "block" : "none";
+});
+const scrollToTopSmooth = () => window.scrollTo({top:0,behavior:"smooth"});
+backToTop.addEventListener("click", scrollToTopSmooth);
+backToTop.addEventListener("keydown", (e) => {
+  if(e.key === "Enter" || e.key === " "){
+    e.preventDefault();
+    scrollToTopSmooth();
+  }
+});
+</script>
+
+</body>
+</html>

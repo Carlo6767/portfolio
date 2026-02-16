@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hobbies - JC Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Discover JC's hobbies, from gaming and digital art to learning and animation.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;transition:all 0.4s ease;}
+html,body{min-height:100vh;scroll-behavior:smooth;}
+body.dark{background:radial-gradient(circle at top,#020617 0,#020617 30%,#020617 60%,#00010a 100%);color:#e5e7eb;overflow-x:hidden;}
+body.light{background:linear-gradient(135deg,#e2e8f0,#f1f5f9);color:#020617;overflow-x:hidden;}
+body.theme-transition *{transition-duration:0.6s !important;}
+
+/* NAVBAR */
+.navbar{display:flex;align-items:center;padding:15px 40px;background:rgba(15,23,42,0.85);backdrop-filter:blur(12px);box-shadow:0 6px 20px rgba(0,0,0,0.45);position:sticky;top:0;z-index:999;}
+.navbar h1.logo{font-size:28px;color:#38bdf8;font-weight:bold;}
+.navbar ul{list-style:none;display:flex;gap:25px;margin-left:auto;align-items:center;}
+.navbar a{text-decoration:none;color:inherit;font-weight:600;position:relative;}
+.navbar a::after{content:"";position:absolute;width:0;height:2px;background:currentColor;left:0;bottom:-5px;transition:width 0.3s;}
+.navbar a:hover::after,.navbar a.active::after{width:100%;}
+
+/* FLOATING DECORATIONS */
+.floating-blob{
+  position:fixed;
+  border-radius:999px;
+  filter:blur(40px);
+  opacity:0.2;
+  z-index:0;
+  pointer-events:none;
+  background:radial-gradient(circle at 30% 30%, #38bdf8, transparent 60%);
+  animation:floatBlob 22s ease-in-out infinite alternate;
+}
+.floating-blob.blob-1{
+  width:260px;
+  height:260px;
+  top:12%;
+  left:-80px;
+}
+.floating-blob.blob-2{
+  width:320px;
+  height:320px;
+  bottom:-80px;
+  right:-40px;
+  background:radial-gradient(circle at 70% 30%, #6366f1, transparent 60%);
+  animation-delay:5s;
+}
+@keyframes floatBlob{
+  0%{transform:translate3d(0,0,0) scale(1);}
+  50%{transform:translate3d(40px,-25px,0) scale(1.06);}
+  100%{transform:translate3d(-30px,30px,0) scale(0.96);}
+}
+
+/* HERO / HEADER */
+.section{max-width:900px;margin:80px auto;padding:40px;text-align:center;border-radius:24px;background:rgba(15,23,42,0.9);box-shadow:0 24px 80px rgba(0,0,0,0.7);position:relative;z-index:1;}
+.section h1{font-size:32px;color:#38bdf8;margin-bottom:16px;letter-spacing:0.06em;text-transform:uppercase;}
+.section p{font-size:18px;line-height:1.6;opacity:0.9;margin-bottom:40px;}
+
+/* HOBBY GRID */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;}
+.card{padding:25px;border-radius:20px;background:rgba(15,23,42,0.9);box-shadow:0 10px 25px rgba(0,0,0,0.4);transition:all 0.3s;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:20px;font-weight:bold;}
+.card:hover{transform:translateY(-10px) scale(1.05) rotate(-2deg);box-shadow:0 20px 40px rgba(56,189,248,0.45);background:rgba(37,99,235,0.25);}
+.card span{font-size:40px;margin-bottom:10px;}
+
+/* FOOTER */
+footer{text-align:center;padding:20px;margin-top:50px;opacity:0.7;}
+
+/* FADE IN */
+.section,.card{opacity:0;transform:translateY(30px);transition:all 0.7s ease;}
+
+/* RESPONSIVE */
+@media (max-width:768px){
+  .navbar{padding:10px 20px;flex-wrap:wrap;row-gap:10px;}
+  .navbar h1.logo{font-size:22px;}
+  .navbar ul{gap:15px;font-size:14px;flex-wrap:wrap;justify-content:flex-end;}
+  .section{margin:50px 16px;padding:28px;}
+  .section h1{font-size:24px;}
+  .section p{font-size:16px;}
+}
+</style>
+</head>
+<body class="dark">
+
+<nav class="navbar">
+<h1 class="logo">JC</h1>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="projects.html">Projects</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a class="active" href="hobbies.html">Hobbies</a></li>
+</ul>
+</nav>
+
+<section class="section">
+<h1>My Hobbies 🎯</h1>
+<p>I spend my free time exploring various hobbies. From online games to digital creativity, I enjoy learning and having fun.</p>
+
+<div class="cards">
+<div class="card"><span>🎮</span>Gaming</div>
+<div class="card"><span>🕹️</span>Game Mods</div>
+<div class="card"><span>🎨</span>Digital Art</div>
+<div class="card"><span>📚</span>Learning</div>
+<div class="card"><span>🎵</span>Music</div>
+<div class="card"><span>🖌️</span>Animation</div>
+</div>
+</section>
+
+<!-- floating background elements -->
+<div class="floating-blob blob-1"></div>
+<div class="floating-blob blob-2"></div>
+
+<script>
+// SCROLL FADE IN
+const revealItems=document.querySelectorAll(".section,.card");
+const reveal=()=>{revealItems.forEach(item=>{const rect=item.getBoundingClientRect();if(rect.top<window.innerHeight-100){item.style.opacity="1";item.style.transform="translateY(0)"}})};
+window.addEventListener("scroll",reveal);
+reveal();
+</script>
+
+</body>
+</html>

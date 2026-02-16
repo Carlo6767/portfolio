@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact - JC Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Contact JC for collaborations, questions, or just to say hi. Reach out via form or social media.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;transition:all 0.4s ease;}
+html,body{min-height:100vh;scroll-behavior:smooth;}
+body.dark{background:radial-gradient(circle at top,#020617 0,#020617 30%,#020617 60%,#00010a 100%);color:#e5e7eb;overflow-x:hidden;}
+body.light{background:linear-gradient(135deg,#f0f9ff,#e2e8f0);color:#020617;overflow-x:hidden;}
+body.theme-transition *{transition-duration:0.6s !important;}
+
+/* NAVBAR */
+.navbar{display:flex;align-items:center;padding:15px 40px;background:rgba(15,23,42,0.85);backdrop-filter:blur(12px);box-shadow:0 6px 20px rgba(0,0,0,0.45);position:sticky;top:0;z-index:999;}
+.navbar h1.logo{font-size:28px;color:#38bdf8;font-weight:bold;}
+.navbar ul{list-style:none;display:flex;gap:25px;margin-left:auto;align-items:center;}
+.navbar a{text-decoration:none;color:inherit;font-weight:600;position:relative;}
+.navbar a::after{content:"";position:absolute;width:0;height:2px;background:currentColor;left:0;bottom:-5px;transition:width 0.3s;}
+.navbar a:hover::after,.navbar a.active::after{width:100%;}
+
+/* FLOATING DECORATIONS */
+.floating-blob{
+  position:fixed;
+  border-radius:999px;
+  filter:blur(40px);
+  opacity:0.2;
+  z-index:0;
+  pointer-events:none;
+  background:radial-gradient(circle at 30% 30%, #38bdf8, transparent 60%);
+  animation:floatBlob 22s ease-in-out infinite alternate;
+}
+.floating-blob.blob-1{
+  width:260px;
+  height:260px;
+  top:12%;
+  left:-80px;
+}
+.floating-blob.blob-2{
+  width:320px;
+  height:320px;
+  bottom:-80px;
+  right:-40px;
+  background:radial-gradient(circle at 70% 30%, #6366f1, transparent 60%);
+  animation-delay:5s;
+}
+@keyframes floatBlob{
+  0%{transform:translate3d(0,0,0) scale(1);}
+  50%{transform:translate3d(40px,-25px,0) scale(1.06);}
+  100%{transform:translate3d(-30px,30px,0) scale(0.96);}
+}
+
+/* SECTION */
+.section{max-width:900px;margin:80px auto;padding:40px;text-align:center;border-radius:24px;background:rgba(15,23,42,0.9);box-shadow:0 24px 80px rgba(0,0,0,0.7);position:relative;z-index:1;}
+.section h1{font-size:28px;color:#38bdf8;margin-bottom:10px;letter-spacing:0.08em;text-transform:uppercase;}
+.section p{font-size:18px;line-height:1.6;opacity:0.9;margin-bottom:30px;}
+
+/* CONTACT FORM */
+form{display:flex;flex-direction:column;gap:15px;margin-bottom:40px;}
+input,textarea{padding:12px;border-radius:10px;border:none;font-size:16px;background:rgba(15,23,42,0.9);color:#e5e7eb;}
+input::placeholder,textarea::placeholder{color:#9ca3af;}
+textarea{resize:none;height:120px;}
+button{padding:12px 25px;border:none;border-radius:12px;font-weight:bold;background:linear-gradient(135deg,#38bdf8,#6366f1);color:white;cursor:pointer;position:relative;overflow:hidden;}
+button::after{content:"";position:absolute;top:50%;left:50%;width:0;height:0;background:rgba(255,255,255,0.3);border-radius:50%;transform:translate(-50%,-50%);transition:width 0.5s,height 0.5s;}
+button:hover::after{width:300px;height:300px;}
+
+/* SOCIAL CARDS */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;}
+.card{padding:20px;border-radius:20px;text-align:center;font-weight:bold;transition:all 0.3s;cursor:pointer;box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+.card:hover{transform:translateY(-10px) scale(1.05);}
+.card span{display:block;font-size:40px;margin-bottom:10px;}
+.card.facebook{background:#1877f2;color:white;}
+.card.discord{background:#5865f2;color:white;}
+.card.youtube{background:#ff0000;color:white;}
+.card.tiktok{background:#69c9d0;color:white;}
+
+/* FOOTER */
+footer{text-align:center;padding:20px;margin-top:50px;opacity:0.7;}
+
+/* FADE IN */
+.section,.card,form,button{opacity:0;transform:translateY(30px);transition:all 0.7s ease;}
+
+/* RESPONSIVE */
+@media (max-width:768px){
+  .navbar{padding:10px 20px;flex-wrap:wrap;row-gap:10px;}
+  .navbar h1.logo{font-size:22px;}
+  .navbar ul{gap:15px;font-size:14px;flex-wrap:wrap;justify-content:flex-end;}
+  .section{margin:50px 16px;padding:28px;}
+  .section h1{font-size:22px;}
+  .section p{font-size:16px;}
+}
+
+/* ===== TECH ELEMENTS FLOATING BACKGROUND ===== */
+.tech-bg{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:0;
+}
+
+.tech{
+  position:absolute;
+  color: rgba(56,189,248,0.2);
+  font-weight:bold;
+  font-size: 18px;
+  animation: tech-float linear infinite;
+}
+
+/* Random positions and speeds */
+.tech:nth-child(1){top:10%; left:5%; animation-duration:15s;}
+.tech:nth-child(2){top:20%; left:80%; animation-duration:12s;}
+.tech:nth-child(3){top:50%; left:40%; animation-duration:18s;}
+.tech:nth-child(4){top:70%; left:60%; animation-duration:20s;}
+.tech:nth-child(5){top:30%; left:25%; animation-duration:14s;}
+.tech:nth-child(6){top:80%; left:10%; animation-duration:16s;}
+.tech:nth-child(7){top:60%; left:90%; animation-duration:13s;}
+.tech:nth-child(8){top:40%; left:50%; animation-duration:17s;}
+.tech:nth-child(9){top:15%; left:70%; animation-duration:19s;}
+.tech:nth-child(10){top:85%; left:30%; animation-duration:15s;}
+
+/* Floating animation */
+@keyframes tech-float{
+  0% {transform: translateY(0px) translateX(0px) rotate(0deg);}
+  50% {transform: translateY(-50px) translateX(20px) rotate(15deg);}
+  100% {transform: translateY(0px) translateX(0px) rotate(0deg);}
+}
+
+</style>
+</head>
+<body class="dark">
+
+<nav class="navbar">
+<h1 class="logo">JC</h1>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="projects.html">Projects</a></li>
+<li><a class="active" href="contact.html">Contact</a></li>
+<li><a href="hobbies.html">Hobbies</a></li>
+</ul>
+</nav>
+
+<section class="section">
+<h1>Contact Me 📬</h1>
+<p>Want to get in touch? Send me a message or find me on social media!</p>
+
+<form>
+<input type="text" placeholder="Your Name">
+<input type="email" placeholder="Your Email">
+<textarea placeholder="Your Message"></textarea>
+<button type="submit">Send Message</button>
+</form>
+
+<h2>Find Me Online 🌐</h2>
+<div class="cards">
+<a class="card facebook" href="https://web.facebook.com/CarloNalulungkot" target="_blank"><span>📘</span>Facebook</a>
+<a class="card discord" href="https://discord.com/users/1133707427271934045" target="_blank"><span>💬</span>Discord</a>
+<a class="card youtube" href="https://www.youtube.com/@Carlopneumonoultramicroscopics" target="_blank"><span>▶️</span>YouTube</a>
+<a class="card tiktok" href="https://www.tiktok.com/@sayuudesu0_" target="_blank"><span>🎵</span>TikTok</a>
+</div>
+</section>
+
+<!-- floating background elements -->
+<div class="floating-blob blob-1"></div>
+<div class="floating-blob blob-2"></div>
+
+<script>
+// SCROLL FADE IN
+const revealItems=document.querySelectorAll(".section,.card,form,button");
+const reveal=()=>{revealItems.forEach(item=>{const rect=item.getBoundingClientRect();if(rect.top<window.innerHeight-100){item.style.opacity="1";item.style.transform="translateY(0)"}})};
+window.addEventListener("scroll",reveal);
+reveal();
+</script>
+
+</body>
+</html>
